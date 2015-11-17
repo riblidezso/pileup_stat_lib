@@ -1,6 +1,5 @@
 #include "pileup_stat_lib.h"
 #include <math.h>
-#include <math.h>
 
     
 #define NPARAMS 1
