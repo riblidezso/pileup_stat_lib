@@ -192,9 +192,9 @@ int call_mutation(struct Mpileup_line* my_pup_line,double min_sample_freq,
 /*
     returns 1 if the position is clean in all samples , 0 if noisy
 */
-double count_clean_pos(struct Mpileup_line* my_pup_line);
+int count_clean_pos(struct Mpileup_line* my_pup_line);
 
 /*
     returns the number of sample covered with cov limit
 */
-double count_covered_pos(struct Mpileup_line* my_pup_line, int cov_limit);
+int count_covered_pos(struct Mpileup_line* my_pup_line, int cov_limit);

@@ -420,7 +420,7 @@ int get_2_smallest_ref_freqs(struct Mpileup_line* my_pup_line,double* val_1,
 /*
     returns 1 if the position is clean in all samples , 0 if noisy
 */
-double count_clean_pos(struct Mpileup_line* my_pup_line){
+int count_clean_pos(struct Mpileup_line* my_pup_line){
     int i;
     for(i=0;i<(*my_pup_line).n_samples;i++){
         if((*my_pup_line).base_freqs[i][REFBASE] != 1.0 ) return 0;
@@ -432,7 +432,7 @@ double count_clean_pos(struct Mpileup_line* my_pup_line){
 /*
     returns the number of sample covered with cov limit
 */
-double count_covered_pos(struct Mpileup_line* my_pup_line, int cov_limit){
+int count_covered_pos(struct Mpileup_line* my_pup_line, int cov_limit){
     int i,c;
     c=0;
     for(i=0;i<(*my_pup_line).n_samples;i++){
