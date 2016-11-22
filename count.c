@@ -32,9 +32,9 @@ int main(int argc, char** argv)
     printf("\n");
     
     //loop over input lines
-    FILE* test_f = fopen("/Users/ribli/pileup_stat_lib/dbg.pup","r");
-    while ((line_size = getline(&line, &len, test_f)) != -1) {
-    //while ((line_size = getline(&line, &len, stdin)) != -1) {
+    //FILE* test_f = fopen("/Users/ribli/pileup_stat_lib/dbg.pup","r");
+    //while ((line_size = getline(&line, &len, test_f)) != -1) {
+    while ((line_size = getline(&line, &len, stdin)) != -1) {
         //the pileup line structure for the line being read
         struct mplp my_mplp;
         init_mplp(&my_mplp);
