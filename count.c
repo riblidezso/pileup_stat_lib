@@ -25,11 +25,12 @@ int main(int argc, char** argv)
     ssize_t line_size;
     
     //print header
-    for(i=0;i<n_sample_names;i++){
+    for(i=0;i<n_sample_names-1;i++){
         printf("%s_A\t%s_C\t%s_G\t%s_T\t",sample_names[i],
                sample_names[i],sample_names[i],sample_names[i]);
     }
-    printf("\n");
+    printf("%s_A\t%s_C\t%s_G\t%s_T\n",sample_names[i],
+           sample_names[i],sample_names[i],sample_names[i]);
     
     //loop over input lines
     //FILE* test_f = fopen("/Users/ribli/pileup_stat_lib/dbg.pup","r");
