@@ -4,20 +4,20 @@ int main(int argc, char** argv)
 {
     //cmdline args
     //parameters for mutation calling
-    if(argc<3){
-        printf("ERROR please provide cov limit, baseq limit,\
+    if(argc<2){
+        printf("ERROR please provide  baseq limit,\
                and a list of sample names \n");
         exit(1);
     }
     
-    int cov_limit=(int) strtol(argv[1],NULL,10);
-    int baseq_limit=(int) strtol(argv[2],NULL,10);
+    //int cov_limit=(int) strtol(argv[1],NULL,10);
+    int baseq_limit=(int) strtol(argv[1],NULL,10);
 
     //sample names
-    int n_sample_names=argc-1;
+    int n_sample_names=argc-2;
     char** sample_names= (char**) malloc(n_sample_names * sizeof(char*));
     int i=0;
-    for(i=0;i<n_sample_names;i++) sample_names[i]=argv[1+i];
+    for(i=0;i<n_sample_names;i++) sample_names[i]=argv[2+i];
     
     //variables for reading a line
     char* line = NULL;
@@ -25,7 +25,11 @@ int main(int argc, char** argv)
     ssize_t line_size;
     
     //print header
-    //printf("#sample_name\tchr\tpos\ttype\tscore\tref\tmut\tcov\tmut_freq\tcleanliness\n");
+    for(i=0;i<n_sample_names;i++){
+        printf("%s_A\t%s_C\t%s_G\t%s_T\t",sample_names[i],
+               sample_names[i],sample_names[i],sample_names[i]);
+    }
+    printf("\n");
     
     //loop over input lines
     FILE* test_f = fopen("/Users/ribli/pileup_stat_lib/dbg.pup","r");
@@ -39,7 +43,7 @@ int main(int argc, char** argv)
         process_mplp_input_line(&my_mplp,line,line_size,baseq_limit,sample_names,n_sample_names);
         
         //print the freq
-        print_freq(&my_mplp);
+        print_counts(&my_mplp);
         
         //free the memory allocated by the struct
         free_mplp(&my_mplp);

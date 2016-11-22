@@ -480,47 +480,41 @@ int collect_indels(char* bases,char* quals, char*** ins_bases, int ins_count,
 ////////////////////////////////////////////////////////////////////////////
 
 /*
-    print mutation
+    print base freqs
 */
-int print_mutation(struct mplp* my_mplp){
-    if ( strcmp(my_mplp->mut_type,"SNV") ==0 ){
-        printf("%s\t%s\t%d\t%s\t%.2f\t%c\t%c\t%d\t%.3f\t%.3f\n",
-               my_mplp->sample_names[my_mplp->mut_sample_idx],
-               my_mplp->chrom,
-               my_mplp->pos,
-               my_mplp->mut_type,
-               my_mplp->mut_score,
-               my_mplp->ref_nuq,
-               my_mplp->mut_base,
-               my_mplp->counts[my_mplp->mut_sample_idx][COV_IDX],
-               my_mplp->mut_freq,
-               my_mplp->cleanliness);
+int print_freq(struct mplp* my_mplp){
+    int i=0;
+    for(i=0;i<my_mplp->n_samples-1;i++){
+        //printf("%.2f\t",my_mplp->freqs[i][REF_IDX]);
+        printf("%.2f\t",my_mplp->freqs[i][A_IDX]);
+        printf("%.2f\t",my_mplp->freqs[i][C_IDX]);
+        printf("%.2f\t",my_mplp->freqs[i][G_IDX]);
+        printf("%.2f\t",my_mplp->freqs[i][T_IDX]);
     }
-    if ( strcmp(my_mplp->mut_type,"INS") ==0   ){
-        printf("%s\t%s\t%d\t%s\t%.2f\t-\t%s\t%d\t%.3f\t%.3f\n",
-               my_mplp->sample_names[my_mplp->mut_sample_idx],
-               my_mplp->chrom,
-               my_mplp->pos,
-               my_mplp->mut_type,
-               my_mplp->mut_score,
-               my_mplp->mut_indel,
-               my_mplp->counts[my_mplp->mut_sample_idx][COV_IDX],
-               my_mplp->mut_freq,
-               my_mplp->cleanliness);
+    //printf("%.2f\t",my_mplp->freqs[i][REF_IDX]);
+    printf("%.2f\t",my_mplp->freqs[i][A_IDX]);
+    printf("%.2f\t",my_mplp->freqs[i][C_IDX]);
+    printf("%.2f\t",my_mplp->freqs[i][G_IDX]);
+    printf("%.2f\n",my_mplp->freqs[i][T_IDX]);
+    return 0;
+}
 
+/*
+ print base counts
+ */
+int print_counts(struct mplp* my_mplp){
+    int i=0;
+    for(i=0;i<my_mplp->n_samples-1;i++){
+        //printf("%d\t",my_mplp->counts[i][REF_IDX]);
+        printf("%d\t",my_mplp->counts[i][A_IDX]);
+        printf("%d\t",my_mplp->counts[i][C_IDX]);
+        printf("%d\t",my_mplp->counts[i][G_IDX]);
+        printf("%d\t",my_mplp->counts[i][T_IDX]);
     }
-    if ( strcmp(my_mplp->mut_type,"DEL") ==0   ){
-        printf("%s\t%s\t%d\t%s\t%.2f\t%s\t-\t%d\t%.3f\t%.3f\n",
-               my_mplp->sample_names[my_mplp->mut_sample_idx],
-               my_mplp->chrom,
-               my_mplp->pos,
-               my_mplp->mut_type,
-               my_mplp->mut_score,
-               my_mplp->mut_indel,
-               my_mplp->counts[my_mplp->mut_sample_idx][COV_IDX],
-               my_mplp->mut_freq,
-               my_mplp->cleanliness);
-
-    }
+    //printf("%d\t",my_mplp->counts[i][REF_IDX]);
+    printf("%d\t",my_mplp->counts[i][A_IDX]);
+    printf("%d\t",my_mplp->counts[i][C_IDX]);
+    printf("%d\t",my_mplp->counts[i][G_IDX]);
+    printf("%d\n",my_mplp->counts[i][T_IDX]);
     return 0;
 }
